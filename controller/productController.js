@@ -32,43 +32,43 @@ function createProduct(req, res) {
     description,
     // price,
     image,
-    store
-
-  })
+    store })
   product.save()
   res.json({ success: "Product create successfully" });
 }
 
+async function deleteProduct(req, res) {
+  const data = await productSchema.findByIdAndDelete(req.body.id)
+  res.send(data)
+}
+
 async function getallproduct(req, res) {
-  const product = await productSchema.find({}) 
+  const product = await productSchema.find({}).populate('store') 
   res.send(product)
 }
 async function createVariants(req, res) {
   const { color, price, quantity, stroage,product } = req.body;
+console.log(req.file);
+  // const variant = new variantsSchema({
+  //   color,
+  //   price,
+  //   quantity,
+  //   stroage,
+  //   product
+  // });
 
-  const variant = new variantsSchema({
-    color,
-    price,
-    quantity,
-    stroage,
-    product
-  });
+  //  variant.save();
 
-   variant.save();
-
-   await productSchema.findOneAndUpdate(
-    { _id: variant.product },
-      { $push: { variants: variant._id } },
-      { new: true },
-   )
-
-  // await productSchema.findOneAndUpdate(
-  //     { _id: product },
+  //  await productSchema.findOneAndUpdate(
+  //   { _id: variant.product },
   //     { $push: { variants: variant._id } },
   //     { new: true },
-  // );
-
+  //  )
   res.json({ success: "Variant create successfully" });
 }
+async function getVariants(req, res) {
+  const variant = await variantsSchema.find().populate('product') 
+  res.send(variant)
+}
 
-module.exports = { productController, createProduct ,createVariants,getallproduct};
+module.exports = { productController, createProduct ,createVariants,getallproduct,getVariants,deleteProduct};
