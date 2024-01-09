@@ -5,7 +5,7 @@ const dotenv = require('dotenv')
 
 function dbConection() {
 
-    mongoose.connect('mongodb+srv://orebi-ecommerce:Orebi123@cluster0.zaulq0c.mongodb.net/orebi-ecommerce?retryWrites=true&w=majority')
+    mongoose.connect(process.env.MONGODBURI)
   .then(() => console.log('Connected!'));
 
 
