@@ -5,9 +5,12 @@ const dbConection = require('./config/dbConection')
 const UserInfo = require('./models/userSchema')
 require('dotenv').config()
 
+app.use(express.json())
 dbConection()
 app.post('/registration', (req, res) => {
   const{firstname,lastname,email,telephone,address,city,postcode,division,district} = req.body
+
+  console.log(req.body);
 
   const users = new UserInfo({
     firstname,
@@ -20,6 +23,7 @@ app.post('/registration', (req, res) => {
     division,
     district,
   })
+  users.save()
 })
 
 app.get('/', (req, res) => {
