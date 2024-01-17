@@ -15,6 +15,10 @@ const userSchema = new Schema({
         type: String,
         require:true,
     },
+    password: {
+        type: String,
+        require:true,
+    },
     telephone: {
         type: String,
         require:true,
