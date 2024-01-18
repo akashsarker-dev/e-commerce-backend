@@ -1,7 +1,9 @@
+const emailTemplete = require('../helpers/emailTemplete');
 const emailValidation = require('../helpers/emailValidation');
 const sendEmail = require('../helpers/sendEmail');
 const UserInfo = require('../models/userSchema')
 const bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 
 async function registration(req,res) {
       const{firstname,lastname,email,telephone,address,city,postcode,division,district, password} = req.body
@@ -42,8 +44,9 @@ async function registration(req,res) {
       division,
       district,
     })
-    sendEmail(email)
     users.save()
+    var token = jwt.sign({ email}, process.env.TOKEN_KEY);
+    sendEmail(email, "Email Verification", emailTemplete(token))
     res.send(users)
 });
 
