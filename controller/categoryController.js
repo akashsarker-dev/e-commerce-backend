@@ -56,6 +56,13 @@ async function createSubCategory(req, res) {
             category
         });
 
+        const updateCategory = await categoryList.findOneAndUpdate(
+            {_id : subCategory.category},
+            // {status: status, isActive:true},
+            {$push: {subCategory: subCategory._id}},
+            {new: true}
+        )
+
         res.json({ success: 'Sub Category created successfully' });
         subCategory.save();
     }
@@ -80,5 +87,11 @@ async function subCategoryStatus(req, res) {
         )
     }
 }
+// get all category
 
-module.exports = {createCategoryController, categoryStatus, createSubCategory, subCategoryStatus};
+async function getAllCategory(req, res) {
+        const data = await categoryList.find({});
+        res.json(data)
+}
+
+module.exports = {createCategoryController, categoryStatus, createSubCategory, subCategoryStatus, getAllCategory};
