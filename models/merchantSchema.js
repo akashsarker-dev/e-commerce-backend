@@ -18,7 +18,7 @@ const storeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref:"UserInfo"
     },
-    product:[
+    products:[
         {
         type: Schema.Types.ObjectId,
         ref:"Product"
