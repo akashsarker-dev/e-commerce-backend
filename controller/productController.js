@@ -22,8 +22,10 @@ async function productController(req, res, next) {
   }
 }
 
-function createProduct() {
-  res.json({ success: "Product create successfully" });
+function createProduct(req, res) {
+  const{name,description,price,image} = req.body
+  console.log(name,description,price,image);
+  // res.json({ success: "Product create successfully" });
 }
 
 module.exports = { productController, createProduct };
