@@ -4,15 +4,15 @@ const { Schema } = mongoose;
 const storeSchema = new Schema({
     storeName:{
         type: String,
-        require:true,
+        required:true,
     },
     officialEmail:{
         type: String,
-        require:true,
+        required:true,
     },
     address:{
         type: String,
-        require:true,
+        required:true,
     },
     owner:{
         type: Schema.Types.ObjectId,

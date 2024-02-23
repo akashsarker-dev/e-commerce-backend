@@ -5,43 +5,43 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
     firstname: {
         type: String,
-        require:true,
+        required:true,
     },
     lastname: {
         type: String,
-        require:true,
+        required:true,
     },
     email: {
         type: String,
-        require:true,
+        required:true,
     },
     password: {
         type: String,
-        require:true,
+        required:true,
     },
     telephone: {
         type: String,
-        require:true,
+        requiredd:true,
     },
     address: {
         type: String,
-        require:true,
+        requiredd:true,
     },
     city: {
         type: String,
-        require:true,
+        requiredd:true,
     },
     postcode: {
         type: String,
-        require:true,
+        requiredd:true,
     },
     division: {
         type: String,
-        require:true,
+        requiredd:true,
     },
     district: {
         type: String,
-        require:true,
+        requiredd:true,
     },
     verified: {
         type: Boolean,

@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const subCategorySchema = new Schema({
     name:{
         type: String,
-        require:true,
+        required:true,
     },
     
         description: String,
