@@ -12,7 +12,7 @@ const variantsSchema = new Schema({
     },
     price: {
         type: String,
-        // required: true,
+        required: true,
         
     },
     quantity: {
@@ -22,11 +22,6 @@ const variantsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Product"
     },
-
-    // variants:{
-    //     type: Schema.Types.ObjectId,
-    //     ref:"Option"
-    // },
     created: {
         type: Date,
         default: new Date()

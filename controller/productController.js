@@ -41,26 +41,33 @@ function createProduct(req, res) {
   res.json({ success: "Product create successfully" });
 }
 async function createVariants(req, res) {
-  const{ name,
-    description,
-    price,
-    option,
-    product,} = req.body;
+  const { name, description, price,quantity, product } = req.body;
 
   const variant = new variantsSchema({
-    name,
-    description,
-    price,
-    option,
-    product,
-  })
-  variant.save();
+      name,
+      description,
+      price,
+      product,
+      quantity
+  });
 
-await  productSchema.findOneAndUpdate(
-    { _id : variant._id},
-    {$push : {variants: variant.product}},
-    { new : true},
-    
-    )
+   variant.save();
+
+   await productSchema.findOneAndUpdate(
+    { _id: variant.product },
+      { $push: { variants: variant._id } },
+      { new: true },
+
+
+   )
+
+  // await productSchema.findOneAndUpdate(
+  //     { _id: product },
+  //     { $push: { variants: variant._id } },
+  //     { new: true },
+  // );
+
+  res.json({ success: "Variant create successfully" });
 }
+
 module.exports = { productController, createProduct ,createVariants};

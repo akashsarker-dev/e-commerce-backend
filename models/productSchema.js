@@ -10,18 +10,18 @@ const productSchema = new Schema({
         type: String,
         required:true,
     },
-    price:{
-        type: String,
-        // required:true,
-    },
+    // price:{
+    //     type: String,
+    //     // required:true,
+    // },
 
     image:{
         type: String,
-        ref:"UserInfo"
+        required:true,
     },
     variants:{
         type: Schema.Types.ObjectId,
-        ref:"Variants"
+        ref:"Variant"
     },
     store:{
         type: Schema.Types.ObjectId,
