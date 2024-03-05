@@ -19,10 +19,12 @@ const productSchema = new Schema({
         type: String,
         required:true,
     },
-    variants:{
+    variants:[
+        {
         type: Schema.Types.ObjectId,
         ref:"Variant"
-    },
+        }
+],
     store:{
         type: Schema.Types.ObjectId,
         ref:"Store"

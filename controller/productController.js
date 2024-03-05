@@ -25,30 +25,27 @@ async function productController(req, res, next) {
 }
 
 function createProduct(req, res) {
-  const{name,description,price,image,store} = req.body
+  const{name,description,image,store} = req.body
 
   const product = new productSchema({
     name,
     description,
-    price,
+    // price,
     image,
     store
 
   })
-  product.save( )
-
-
+  product.save()
   res.json({ success: "Product create successfully" });
 }
 async function createVariants(req, res) {
-  const { name, description, price,quantity, product } = req.body;
+  const { color, price, quantity, stroage, } = req.body;
 
   const variant = new variantsSchema({
-      name,
-      description,
-      price,
-      product,
-      quantity
+    color,
+    price,
+    quantity,
+    stroage,
   });
 
    variant.save();
@@ -57,8 +54,6 @@ async function createVariants(req, res) {
     { _id: variant.product },
       { $push: { variants: variant._id } },
       { new: true },
-
-
    )
 
   // await productSchema.findOneAndUpdate(
