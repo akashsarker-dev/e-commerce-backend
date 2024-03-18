@@ -38,14 +38,20 @@ function createProduct(req, res) {
   product.save()
   res.json({ success: "Product create successfully" });
 }
+
+async function getallproduct(req, res) {
+  const product = await productSchema.find({}) 
+  res.send(product)
+}
 async function createVariants(req, res) {
-  const { color, price, quantity, stroage, } = req.body;
+  const { color, price, quantity, stroage,product } = req.body;
 
   const variant = new variantsSchema({
     color,
     price,
     quantity,
     stroage,
+    product
   });
 
    variant.save();
@@ -65,4 +71,4 @@ async function createVariants(req, res) {
   res.json({ success: "Variant create successfully" });
 }
 
-module.exports = { productController, createProduct ,createVariants};
+module.exports = { productController, createProduct ,createVariants,getallproduct};
