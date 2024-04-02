@@ -5,6 +5,9 @@ app.use(express.json())
 require('dotenv').config()
 const dbConection = require('./config/dbConection')
 const route = require('./route')
+var cors = require('cors')
+
+app.use(cors())
 
 dbConection()
 app.use(route)

@@ -1,3 +1,4 @@
+
 const Merchant = require("../models/merchantSchema");
 const userInfo = require("../models/userSchema");
 
@@ -24,4 +25,11 @@ async function beComeMerchant(req, res) {
     res.json(store)
     
 }
-module.exports = beComeMerchant
+
+async function getAllStore(req, res) {
+
+    const data = await Merchant.find({})
+    
+    res.send(data)
+}
+module.exports = {beComeMerchant, getAllStore}
