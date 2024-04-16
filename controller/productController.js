@@ -59,11 +59,11 @@ console.log(req.file);
 
   //  variant.save();
 
-   await productSchema.findOneAndUpdate(
-    { _id: variant.product },
-      { $push: { variants: variant._id } },
-      { new: true },
-   )
+  //  await productSchema.findOneAndUpdate(
+  //   { _id: variant.product },
+  //     { $push: { variants: variant._id } },
+  //     { new: true },
+  //  )
 
   // await productSchema.findOneAndUpdate(
   //     { _id: product },
