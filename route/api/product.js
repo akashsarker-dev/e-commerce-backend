@@ -4,6 +4,7 @@ const router = express.Router()
 const multer  = require('multer')
 
 
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './uploads')
@@ -19,6 +20,10 @@ const storage = multer.diskStorage({
 // router.post('/createproduct', productController, createProduct)
 router.post('/createproduct',productController, createProduct)
 router.post('/createvariants',upload.single('avatar'), createVariants)
+
+// router.post('/createproduct', productController, createProduct)
+router.post('/createproduct',productController, createProduct)
+router.post('/createvariants', createVariants)
 router.get('/getvariants', getVariants)
 router.get('/getallproduct', getallproduct)
 router.post('/deleteproduct', deleteProduct)

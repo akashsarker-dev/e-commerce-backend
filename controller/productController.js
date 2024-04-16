@@ -59,11 +59,18 @@ console.log(req.file);
 
   //  variant.save();
 
-  //  await productSchema.findOneAndUpdate(
-  //   { _id: variant.product },
+   await productSchema.findOneAndUpdate(
+    { _id: variant.product },
+      { $push: { variants: variant._id } },
+      { new: true },
+   )
+
+  // await productSchema.findOneAndUpdate(
+  //     { _id: product },
   //     { $push: { variants: variant._id } },
   //     { new: true },
-  //  )
+  // );
+
   res.json({ success: "Variant create successfully" });
 }
 async function getVariants(req, res) {
