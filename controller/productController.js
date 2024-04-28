@@ -47,17 +47,18 @@ async function getallproduct(req, res) {
   res.send(product)
 }
 async function createVariants(req, res) {
-  const { color, price, quantity, stroage,product } = req.body;
+  const { color, price, quantity, stroage,product,image } = req.body;
 console.log(req.file);
-  // const variant = new variantsSchema({
-  //   color,
-  //   price,
-  //   quantity,
-  //   stroage,
-  //   product
-  // });
+  const variant = new variantsSchema({
+    color,
+    image: `http://localhost:3000/uploads/${req.file.filename}`,
+    price,
+    quantity,
+    stroage,
+    product
+  });
 
-  //  variant.save();
+   variant.save();
 
   //  await productSchema.findOneAndUpdate(
   //   { _id: variant.product },

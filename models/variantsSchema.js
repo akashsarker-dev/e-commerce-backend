@@ -5,21 +5,26 @@ const variantsSchema = new Schema({
     color: {
         type: String,
     },
+    image: {
+    type: String,
+    },
     price: {
         type: String,
-        required: true,
+        // required: true,
     },
     quantity: {
         type: String,
-        required: true,
+        // required: true,
     },
     stroage:{
         type: String,
-        required: true,
+        // required: true,
     },
     product: {
         type: Schema.Types.ObjectId,
-        ref: "Product"
+        ref: "Product",
+        // required: true,
+
     },
     created: {
         type: Date,

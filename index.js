@@ -12,6 +12,9 @@ app.use(cors())
 dbConection()
 app.use(route)
 
+const path = require('path')
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
