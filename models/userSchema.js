@@ -43,6 +43,9 @@ const userSchema = new Schema({
         type: String,
         requiredd:true,
     },
+    token: {
+        type: String,
+    },
     verified: {
         type: Boolean,
         default:false,

@@ -29,8 +29,8 @@ async function registration(req,res) {
           return res.send({error: 'email is already use'})
         }
       
-
-  console.log(req.body);
+        var token = jwt.sign({ email}, process.env.TOKEN_KEY);
+  // console.log(req.body);
   bcrypt.hash(password, 10, function(err, hash) {
     const users = new UserInfo({
       firstname,
@@ -43,11 +43,15 @@ async function registration(req,res) {
       postcode,
       division,
       district,
+      token : email
     })
     users.save()
-    var token = jwt.sign({ email}, process.env.TOKEN_KEY);
+    // var token = jwt.sign({ email}, process.env.TOKEN_KEY);
     sendEmail(email, "Email Verification", emailTemplete(token))
-    res.send(users)
+    res.send({
+      success: 'Registration Successfull',
+        data : users
+    })
 });
 
 }
