@@ -11,10 +11,10 @@ async function productController(req, res, next) {
   } else {
     const user = await userList.find({ _id: userId });
     if (user.length > 0) {
-      if (userPassword == "123456") {
+      // if (userPassword == "123456") {
         if (user[0].role == "merchant") {
           next();
-        }
+        // }
       } else {
         res.json({ error: "password not match" });
       }
@@ -31,7 +31,7 @@ function createProduct(req, res) {
     name,
     description,
     // price,
-    image,
+    // image,
     store })
   product.save()
   res.json({ success: "Product create successfully" });
@@ -42,13 +42,22 @@ async function deleteProduct(req, res) {
   res.send(data)
 }
 
+async function getallproductID(req, res) {
+  const { id } = req.params;
+  const product = await productSchema.findById(id).populate('store').populate('variants');
+    
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    res.json(product);
+}
 async function getallproduct(req, res) {
-  const product = await productSchema.find({}).populate('store') 
+  const product = await productSchema.find({}).populate('store').populate('variants'); 
   res.send(product)
 }
 async function createVariants(req, res) {
-  const { color, price, quantity, stroage,product,image } = req.body;
-console.log(req.file);
+  const { color, price, quantity, stroage, product, image } = req.body;
+  console.log(req.file);
   const variant = new variantsSchema({
     color,
     image: `http://localhost:3000/uploads/${req.file.filename}`,
@@ -58,25 +67,18 @@ console.log(req.file);
     product
   });
 
-   variant.save();
-
-  //  await productSchema.findOneAndUpdate(
-  //   { _id: variant.product },
-  //     { $push: { variants: variant._id } },
-  //     { new: true },
-  //  )
-
-  // await productSchema.findOneAndUpdate(
-  //     { _id: product },
-  //     { $push: { variants: variant._id } },
-  //     { new: true },
-  // );
-
-  res.json({ success: "Variant create successfully" });
+  variant.save();
+  await productSchema.findOneAndUpdate(
+    { _id: variant.product },
+    { $push: { variants: variant._id } },
+    { new: true }
+  );
+  res.send({ success: "Variant create successfully done" });
 }
+
 async function getVariants(req, res) {
   const variant = await variantsSchema.find().populate('product') 
   res.send(variant)
 }
 
-module.exports = { productController, createProduct ,createVariants,getallproduct,getVariants,deleteProduct};
+module.exports = { productController, createProduct ,createVariants,getallproductID,getVariants,deleteProduct, getallproduct};

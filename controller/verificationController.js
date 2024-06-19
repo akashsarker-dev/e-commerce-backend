@@ -13,7 +13,7 @@ if(decoded){
         {verified: true},
         {new: true}
        )
-       res.json ({success: 'user verified'})
+       res.redirect('http://localhost:5173/login')
 }
 }
 module.exports = verificationController

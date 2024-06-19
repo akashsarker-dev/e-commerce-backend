@@ -38,11 +38,11 @@ async function registration(req,res) {
       email,
       password: hash,
       telephone,
-      address,
-      city,
-      postcode,
-      division,
-      district,
+      // address,
+      // city,
+      // postcode,
+      // division,
+      // district,
       token : email
     })
     users.save()

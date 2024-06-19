@@ -21,27 +21,27 @@ const userSchema = new Schema({
     },
     telephone: {
         type: String,
-        requiredd:true,
+        required:true,
     },
     address: {
         type: String,
-        requiredd:true,
+        // requiredd:true,
     },
     city: {
         type: String,
-        requiredd:true,
+        // requiredd:true,
     },
     postcode: {
         type: String,
-        requiredd:true,
+        // requiredd:true,
     },
     division: {
         type: String,
-        requiredd:true,
+        // requiredd:true,
     },
     district: {
         type: String,
-        requiredd:true,
+        // requiredd:true,
     },
     token: {
         type: String,
